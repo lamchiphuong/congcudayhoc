@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Các Dự Án Của Tớ</title>
     
-    <!-- Favicon từ link bạn cung cấp -->
+    <!-- Favicon -->
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4270/4270035.png" type="image/png">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4270/4270035.png">
+    <link rel="apple-touch-icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4QiuW7fBqEp7eOGoIbAB73b0-WILlWIHFpFLrIT6Hakh1Jq79xXf5FOdhHUoEeog-WZbuBFis_0DovWvDTVLzaRknwwRtoD80WBUyIq7rMIA_ti5j9TZeCe1k77J-yR7JE7OFEVnpfGhKdqxjNZVwJpVaLrFHcoeCLB66uu_-PQ1MWq_jos9J0k-LiUi7/s320/41E61295-7FA2-485F-A5E8-6BA52CAECE91.jpeg">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
 
@@ -112,7 +115,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Avatar từ link bạn cung cấp -->
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4QiuW7fBqEp7eOGoIbAB73b0-WILlWIHFpFLrIT6Hakh1Jq79xXf5FOdhHUoEeog-WZbuBFis_0DovWvDTVLzaRknwwRtoD80WBUyIq7rMIA_ti5j9TZeCe1k77J-yR7JE7OFEVnpfGhKdqxjNZVwJpVaLrFHcoeCLB66uu_-PQ1MWq_jos9J0k-LiUi7/s320/41E61295-7FA2-485F-A5E8-6BA52CAECE91.jpeg" alt="Lâm Chí Phương" class="avatar">
         
         <h1>Lâm Chí Phương</h1>
@@ -136,5 +138,24 @@
             </a>
         </div>
     </div>
+
+    <!-- Register Service Worker để hỗ trợ PWA & offline -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered!', reg))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+
+        // Gợi ý cài đặt PWA khi người dùng truy cập lần đầu (tùy chọn, có thể bỏ nếu không muốn banner)
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Bạn có thể hiện một nút "Cài đặt" thủ công ở đây nếu muốn
+        });
+    </script>
 </body>
 </html>
