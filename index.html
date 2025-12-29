@@ -3,595 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vòng Quay May Mắn - Chọn Ngẫu Nhiên</title>
+    <title>Các Dự Án Của Tớ</title>
+    
+    <!-- Favicon từ link bạn cung cấp -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4270/4270035.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/4270/4270035.png">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
             margin: 0;
-            padding: 20px;
-            color: #333;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7f0, #c8ebe0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #2d6a4f;
         }
 
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        header {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            padding: 30px;
-            text-align: center;
-            color: white;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .add-section {
-            padding: 25px;
-            background: #f8f9fa;
-            text-align: center;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-
-        input[type="text"], input[type="file"] {
-            padding: 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            font-size: 16px;
-        }
-
-        button.add-btn {
-            padding: 12px 30px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button.add-btn:hover {
-            background: #5a6fd8;
-        }
-
-        .student-grid {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 20px;
-        }
-
-        @media (max-width: 767px) {
-            .student-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 15px;
-                padding: 20px;
-            }
-        }
-
-        .student-item {
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .student-item img {
-            width: 90px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .student-item .name {
-            margin-top: 10px;
-            font-weight: 600;
-            font-size: 14px;
-            color: #333;
-        }
-
-        .student-item.highlight {
-            transform: scale(1.3);
-            z-index: 10;
-        }
-
-        .student-item.highlight img {
-            border-color: #ffd700;
-            box-shadow: 0 0 40px #ffd700, 0 0 60px #ffea00;
-        }
-
-        .control-section {
-            text-align: center;
-            padding: 20px 30px 30px;
-            background: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        #spin-btn {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-            font-size: 24px;
-            padding: 18px 60px;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        #spin-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.5);
-        }
-
-        #spin-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        #restart-btn, #reset-btn {
-            font-size: 18px;
-            padding: 14px 40px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            color: white;
-        }
-
-        #restart-btn {
-            background: linear-gradient(135deg, #26d0ce, #1a2980);
-        }
-
-        #restart-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(38, 208, 206, 0.5);
-        }
-
-        #reset-btn {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-
-        #reset-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(231, 76, 60, 0.5);
-        }
-
-        #restart-btn:disabled, #reset-btn:disabled {
-            background: #aaa;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
             text-align: center;
             max-width: 420px;
             width: 90%;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            animation: zoomIn 0.5s;
+            padding: 20px;
         }
 
-        .modal-content img {
-            width: 160px;
-            height: 160px;
+        .avatar {
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 10px solid #667eea;
-            margin: 20px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(45, 106, 79, 0.15);
+            border: 5px solid #95d5b2;
         }
 
-        .winner-name {
-            font-size: 36px;
-            font-weight: 700;
-            color: #667eea;
+        h1 {
+            font-size: 30px;
+            margin: 10px 0;
+            color: #1b4332;
         }
 
-        .modal-buttons {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-remove, .btn-close, .btn-confirm, .btn-cancel {
-            padding: 14px 35px;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-remove, .btn-cancel { background: #e74c3c; color: white; }
-        .btn-close, .btn-confirm { background: #667eea; color: white; }
-        .btn-cancel { background: #999; }
-
-        #alert-modal .modal-content {
-            padding: 30px;
-        }
-
-        #alert-modal h3 {
-            margin: 0 0 20px;
-            font-size: 24px;
-            color: #333;
-        }
-
-        #alert-message {
-            font-size: 18px;
-            margin-bottom: 30px;
+        p {
+            font-size: 17px;
+            margin-bottom: 45px;
+            color: #40916c;
             line-height: 1.5;
         }
 
-        @keyframes zoomIn {
-            from { transform: scale(0.4); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .btn {
+            display: block;
+            padding: 20px 30px;
+            background: #4ea8de;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 18px;
+            box-shadow: 0 8px 16px rgba(78, 168, 222, 0.3),
+                        0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(78, 168, 222, 0.4),
+                        0 8px 16px rgba(0, 0, 0, 0.15);
+            background: #5bb8ee;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 5px 10px rgba(78, 168, 222, 0.3);
+            background: #3d8bce;
+        }
+
+        .btn i {
+            margin-right: 12px;
+            font-size: 20px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <!-- Âm thanh -->
-    <audio id="spin-music" src="https://cdn.pixabay.com/audio/2022/03/15/audio_c0cc300029.mp3" preload="auto" loop></audio>
-    <audio id="win-sound" src="https://cdn.pixabay.com/audio/2025/09/13/audio_fc02fd4274.mp3" preload="auto"></audio>
-
     <div class="container">
-        <header>
-            <h1>Vòng Quay May Mắn</h1>
-            <p>Chọn ngẫu nhiên học sinh</p>
-        </header>
+        <!-- Avatar từ link bạn cung cấp -->
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4QiuW7fBqEp7eOGoIbAB73b0-WILlWIHFpFLrIT6Hakh1Jq79xXf5FOdhHUoEeog-WZbuBFis_0DovWvDTVLzaRknwwRtoD80WBUyIq7rMIA_ti5j9TZeCe1k77J-yR7JE7OFEVnpfGhKdqxjNZVwJpVaLrFHcoeCLB66uu_-PQ1MWq_jos9J0k-LiUi7/s320/41E61295-7FA2-485F-A5E8-6BA52CAECE91.jpeg" alt="Lâm Chí Phương" class="avatar">
+        
+        <h1>Lâm Chí Phương</h1>
+        <p>Chào bạn! Đây là các công cụ/web nhỏ mình tự làm để hỗ trợ dạy học và giải trí. Hy vọng hữu ích với bạn nhé 🌱</p>
 
-        <div class="add-section">
-            <div class="input-group">
-                <input type="text" id="student-name" placeholder="Nhập tên học sinh">
-                <input type="file" id="student-photo" accept="image/*">
-            </div>
-            <button class="add-btn" onclick="addStudent()">Thêm học sinh</button>
-        </div>
-
-        <div class="student-grid" id="student-grid"></div>
-
-        <div class="control-section">
-            <button id="spin-btn" onclick="spin()">QUAY NGAY</button>
-            <button id="restart-btn" onclick="restartList()">KHỞI ĐỘNG LẠI</button>
-            <button id="reset-btn" onclick="resetList()">XÓA DANH SÁCH</button>
-        </div>
-    </div>
-
-    <!-- Modal kết quả người thắng -->
-    <div id="result-modal" class="modal">
-        <div class="modal-content">
-            <h2>🎉 Chúc mừng! 🎉</h2>
-            <div class="winner-name" id="winner-name"></div>
-            <img id="winner-photo" src="" alt="Winner">
-            <div class="modal-buttons">
-                <button class="btn-remove" onclick="excludeWinner()">Loại bỏ</button>
-                <button class="btn-close" onclick="closeModal()">Tiếp tục quay</button>
-            </div>
+        <div class="links">
+            <a href="https://lamchiphuong.github.io/waiting-room/" class="btn" target="_blank">
+                <i class="fas fa-hourglass-half"></i> Màn hình chờ cho lớp học Online
+            </a>
+            <a href="https://lamchiphuong.github.io/CourseTimer/" class="btn" target="_blank">
+                <i class="fas fa-calendar-alt"></i> Phần mềm tính lịch học
+            </a>
+            <a href="https://lamchiphuong.github.io/score-tracker/" class="btn" target="_blank">
+                <i class="fas fa-trophy"></i> Theo dõi điểm khi chơi trò chơi
+            </a>
+            <a href="https://lamchiphuong.github.io/vongquay/" class="btn" target="_blank">
+                <i class="fas fa-random"></i> Chọn học sinh ngẫu nhiên (Vòng quay)
+            </a>
         </div>
     </div>
-
-    <!-- Modal thông báo chung -->
-    <div id="alert-modal" class="modal">
-        <div class="modal-content">
-            <h3 id="alert-title">Thông báo</h3>
-            <div id="alert-message"></div>
-            <div class="modal-buttons">
-                <button class="btn-close" onclick="closeAlert()">Đóng</button>
-                <button class="btn-confirm" onclick="confirmAlert()" style="display:none;">Xác nhận</button>
-                <button class="btn-cancel" onclick="closeAlert()" style="display:none;">Hủy</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const studentGrid = document.getElementById('student-grid');
-        const resultModal = document.getElementById('result-modal');
-        const alertModal = document.getElementById('alert-modal');
-        const alertTitle = document.getElementById('alert-title');
-        const alertMessage = document.getElementById('alert-message');
-
-        const winnerName = document.getElementById('winner-name');
-        const winnerPhoto = document.getElementById('winner-photo');
-        const spinBtn = document.getElementById('spin-btn');
-        const restartBtn = document.getElementById('restart-btn');
-        const resetBtn = document.getElementById('reset-btn');
-        const spinMusic = document.getElementById('spin-music');
-        const winSound = document.getElementById('win-sound');
-
-        let students = [];
-        let spinning = false;
-        let lastWinnerIndex = -1;
-        let highlightInterval = null;
-        let confirmCallback = null;
-
-        const STORAGE_KEY = 'luckyWheelStudents';
-
-        function showAlert(message, title = "Thông báo") {
-            alertTitle.textContent = title;
-            alertMessage.innerHTML = message.replace(/\n/g, '<br>');
-            document.querySelector('#alert-modal .btn-confirm').style.display = 'none';
-            document.querySelector('#alert-modal .btn-cancel').style.display = 'none';
-            document.querySelector('#alert-modal .btn-close').style.display = 'inline-block';
-            alertModal.style.display = 'flex';
-        }
-
-        function showConfirm(message, title = "Xác nhận", onConfirm) {
-            alertTitle.textContent = title;
-            alertMessage.innerHTML = message.replace(/\n/g, '<br>');
-            document.querySelector('#alert-modal .btn-confirm').style.display = 'inline-block';
-            document.querySelector('#alert-modal .btn-cancel').style.display = 'inline-block';
-            document.querySelector('#alert-modal .btn-close').style.display = 'none';
-            confirmCallback = onConfirm;
-            alertModal.style.display = 'flex';
-        }
-
-        function closeAlert() {
-            alertModal.style.display = 'none';
-            confirmCallback = null;
-        }
-
-        function confirmAlert() {
-            alertModal.style.display = 'none';
-            if (confirmCallback) {
-                confirmCallback();
-                confirmCallback = null;
-            }
-        }
-
-        function loadSavedList() {
-            const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved) {
-                students = JSON.parse(saved);
-                renderGrid();
-            }
-        }
-
-        function saveList() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
-        }
-
-        function updateButtons() {
-            const hasStudents = students.length > 0;
-            const hasActive = getActiveStudents().length >= 2;
-            restartBtn.disabled = !hasStudents;
-            resetBtn.disabled = !hasStudents;
-            spinBtn.disabled = !hasActive;  // Chỉ bật khi có ít nhất 2 người chơi
-        }
-
-        function addStudent() {
-            const nameInput = document.getElementById('student-name');
-            const photoInput = document.getElementById('student-photo');
-            const name = nameInput.value.trim();
-
-            if (!name || !photoInput.files[0]) {
-                showAlert('Vui lòng nhập tên và chọn ảnh!');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const student = { 
-                    name, 
-                    photo: e.target.result,
-                    excluded: false
-                };
-                students.push(student);
-                renderGrid();
-                saveList();
-                updateButtons();
-                nameInput.value = '';
-                photoInput.value = '';
-            };
-            reader.readAsDataURL(photoInput.files[0]);
-        }
-
-        function getActiveStudents() {
-            return students.filter(s => !s.excluded);
-        }
-
-        function renderGrid() {
-            studentGrid.innerHTML = '';
-            const activeStudents = getActiveStudents();
-            activeStudents.forEach((student) => {
-                const realIndex = students.indexOf(student);
-                const item = document.createElement('div');
-                item.className = 'student-item';
-                item.dataset.realIndex = realIndex;
-                item.innerHTML = `
-                    <img src="${student.photo}" alt="${student.name}">
-                    <div class="name">${student.name}</div>
-                `;
-                studentGrid.appendChild(item);
-            });
-            updateButtons(); // Cập nhật lại trạng thái nút sau khi render
-        }
-
-        function getSpinDuration() {
-            const count = getActiveStudents().length;
-            if (count === 2) return 5000;
-            if (count <= 6) return 7000;
-            if (count <= 10) return 8000;
-            if (count <= 20) return 15000;
-            if (count <= 30) return 20000;
-            return 30000;
-        }
-
-        function spin() {
-            const activeStudents = getActiveStudents();
-            if (activeStudents.length < 2) {
-                showAlert('Cần ít nhất 2 học sinh chưa bị loại để quay!');
-                return;
-            }
-            if (spinning) return;
-
-            saveList();
-            spinning = true;
-            spinBtn.disabled = true;
-
-            document.querySelectorAll('.student-item').forEach(el => el.classList.remove('highlight'));
-
-            spinMusic.currentTime = 0;
-            spinMusic.play().catch(() => {});
-
-            const duration = getSpinDuration();
-            const totalSteps = Math.floor(duration / 80);
-            let step = 0;
-
-            const winnerActiveIndex = Math.floor(Math.random() * activeStudents.length);
-            const winner = activeStudents[winnerActiveIndex];
-            lastWinnerIndex = students.indexOf(winner);
-
-            highlightInterval = setInterval(() => {
-                document.querySelectorAll('.student-item').forEach(el => el.classList.remove('highlight'));
-
-                let currentIndex;
-                if (step >= totalSteps - 15) {
-                    currentIndex = winnerActiveIndex;
-                } else {
-                    currentIndex = Math.floor(Math.random() * activeStudents.length);
-                }
-
-                const currentStudent = activeStudents[currentIndex];
-                const realIndex = students.indexOf(currentStudent);
-                const item = document.querySelector(`.student-item[data-real-index="${realIndex}"]`);
-                if (item) {
-                    item.classList.add('highlight');
-                }
-
-                step++;
-
-                if (step >= totalSteps) {
-                    clearInterval(highlightInterval);
-                    highlightInterval = null;
-                    if (item) item.classList.add('highlight');
-
-                    spinMusic.pause();
-
-                    winnerName.textContent = winner.name;
-                    winnerPhoto.src = winner.photo;
-
-                    winSound.currentTime = 0;
-                    winSound.play().catch(() => {});
-
-                    resultModal.style.display = 'flex';
-
-                    spinning = false;
-                    updateButtons(); // Cập nhật lại nút quay sau khi kết thúc
-                }
-            }, 80);
-        }
-
-        function excludeWinner() {
-            if (lastWinnerIndex >= 0) {
-                students[lastWinnerIndex].excluded = true;
-                renderGrid();
-                saveList();
-                lastWinnerIndex = -1;
-            }
-            closeModal();
-        }
-
-        function closeModal() {
-            resultModal.style.display = 'none';
-            document.querySelectorAll('.student-item').forEach(el => el.classList.remove('highlight'));
-        }
-
-        function restartList() {
-            if (students.length === 0) {
-                showAlert('Chưa có danh sách nào để khởi động lại!');
-                return;
-            }
-
-            showConfirm(
-                'Bạn có muốn khởi động lại không?<br>Tất cả học sinh sẽ hiện lại và tham gia quay từ đầu.',
-                'Khởi động lại',
-                () => {
-                    students.forEach(student => student.excluded = false);
-                    renderGrid();
-                    saveList();
-                    showAlert('Đã khởi động lại thành công!<br>Bây giờ tất cả học sinh đều tham gia quay.');
-                }
-            );
-        }
-
-        function resetList() {
-            if (students.length === 0) {
-                showAlert('Danh sách đã trống rồi!');
-                return;
-            }
-
-            showConfirm(
-                '⚠️ Bạn có chắc chắn muốn XÓA TOÀN BỘ danh sách học sinh?<br><br>Hành động này <strong>KHÔNG THỂ</strong> hoàn tác!',
-                'Xóa danh sách',
-                () => {
-                    students = [];
-                    renderGrid();
-                    localStorage.removeItem(STORAGE_KEY);
-
-                    // Reset hoàn toàn trạng thái quay để tránh bug
-                    spinning = false;
-                    if (highlightInterval) {
-                        clearInterval(highlightInterval);
-                        highlightInterval = null;
-                    }
-                    document.querySelectorAll('.student-item').forEach(el => el.classList.remove('highlight'));
-                    spinBtn.disabled = true; // Sẽ được bật lại khi thêm đủ người
-
-                    updateButtons();
-                    showAlert('Đã xóa toàn bộ danh sách thành công!<br>Bây giờ bạn có thể thêm danh sách mới.');
-                }
-            );
-        }
-
-        window.onload = function() {
-            loadSavedList();
-            updateButtons();
-        };
-
-        window.onclick = event => {
-            if (event.target === resultModal) closeModal();
-            if (event.target === alertModal) closeAlert();
-        }
-    </script>
 </body>
 </html>
